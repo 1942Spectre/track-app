@@ -1,13 +1,19 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 
-
-function TrackListScreen(){
-    return <Text style={{fontSize:48}}> List Screen</Text>
+function TrackListScreen({navigation}) {
+  return (
+    <>
+      <Text style={{ fontSize: 48 }}> List Screen</Text>
+      <Button
+        title="Go to track detail"
+        onPress={() => navigation.navigate("TrackDetail")}
+      />
+    
+    </>
+  );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({});
 
-})
-
-export default TrackListScreen
+export default TrackListScreen;
