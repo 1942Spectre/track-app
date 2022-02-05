@@ -2,13 +2,22 @@ import React, { useState, useContext } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Text, Button, Input } from "react-native-elements";
 import { Context as AuthContext } from "../context/AuthContext";
-
+import {NavigationEvents} from 'react-navigation'
 function SigninScreen({ navigation }) {
-  const { state, signIn } = useContext(AuthContext);
+
+
+
+  const { state, signIn, clearErrorMessage } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
     <View style={styles.container}>
+    <NavigationEvents
+      // onWillFocus={() => {}}
+      // onDidFocus={() => {}}
+      onWillFocus={clearErrorMessage}
+      // onDidBlur={() => {}}
+    />
       <Text style={{ textAlign: "center" }} h3>
         Sign in
       </Text>
@@ -40,7 +49,11 @@ function SigninScreen({ navigation }) {
         />
       </View>
 
-      <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("Signup");
+        }}
+      >
         <Text> Don't have an account? Sign up</Text>
       </TouchableOpacity>
     </View>

@@ -2,9 +2,9 @@ import React, { useState, useContext } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Text, Button, Input } from "react-native-elements";
 import { Context as AuthContext } from "../context/AuthContext";
-
+import {NavigationEvents} from "react-navigation"
 function SignupScreen({ navigation }) {
-  const { state, signUp } = useContext(AuthContext);
+  const { state, signUp, clearErrorMessage } = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +12,9 @@ function SignupScreen({ navigation }) {
   console.log(state);
   return (
     <View style={styles.container}>
+      <NavigationEvents
+        onWillFocus={clearErrorMessage}
+      />
       <Text style={{ textAlign: "center" }} h3>
         Sign up for Tracker
       </Text>
